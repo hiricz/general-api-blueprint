@@ -1764,6 +1764,7 @@ Retrieves list of all Applications.
     + embedded.job_offer (object, required) - Job Offer to which the Application belongs.
     + embedded.user (object, required) - User to which the Application belongs.
     + embedded.attachments (array, required) - All attachments of the Application.
+    + embedded.application_state_changes (array, required) - All ApplicationStateChanges of the Application.
 
 + Parameters
     + id (number, required) - ID of the Application.
@@ -2619,6 +2620,14 @@ Retrieves an Application with given ID.
                                 "href": "\/api\/applications"
                             }
                         }
+                    }
+                ],
+                "application_state_changes": [
+                    {
+                        "id": 2,
+                        "old_state": "new",
+                        "new_state": "accepted",
+                        "created": "2016-05-31T10:36:54+0200"
                     }
                 ]
             }
