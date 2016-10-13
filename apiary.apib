@@ -688,7 +688,7 @@ Creates an Application State.
 ## Company's Applications Collection [/api/companies/{company_id}/applications?limit={limit}&page={page}&sort={sort}&state={state}]
 
 + Parameters
-    + company (number, required) - ID of the Company.
+    + company_id (number, required) - ID of the Company.
     + limit (number, optional) - Limits number of candidates returned in the request
     + page (number, optional) - Distance from beginning of the array of available candidates
     + sort (string, optional) - Sorts the result in the given order. The format for sort is "column+ASC,column+DESC"
@@ -5115,7 +5115,7 @@ Creates Company Profile with given parameters.
     + twitter_link (string, required) - Name of the company on twitter
 
 + Parameters
-    + id (number, required) - Id of the company
+    + company_id (number, required) - Id of the company
 
 ### Retrieve a Company Profile [GET]
 
@@ -9930,7 +9930,7 @@ Retrieves Job Offer Reaction with given ID.
 
 Updates Job Offer Reaction with given ID.
 
-+ Requestion (application/json)
++ Requestd columns to  (application/json)
 
     + Attributes
         + type (string, optional) - Type of the Job Offer Reaction. Can be 'like' or 'dislike'.
@@ -13216,6 +13216,8 @@ Creates User Profile with given parameters
         + postal_code (string, optional) - Postal code of the place where the User lives
         + user_education_level (number, optional) - ID of the User Education Level
         + job_category (number, optional) - Selected JobCategory
+        + dream_job_description (string, optional) - Description of user's dream job
+        + job_types (array, optional) - List of job type ids
 
     + Body
 
@@ -13231,7 +13233,9 @@ Creates User Profile with given parameters
                 "looking_for_job": "rather-no",
                 "gender": "male",
                 "user_education_level": 1,
-                "job_category": 1
+                "job_category": 1,
+                "dream_job_description": "Give me money, I will do anything for you.",
+                "job_types": ["full-time", "part-time"]
             }
 
 + Response 201 (application/hal+json)
@@ -13376,11 +13380,13 @@ Creates User Profile with given parameters
     + city (string, optional) - Name of the city where the User lives
     + country (string, optional) - Name of the country where the User lives
     + postal_code (string, optional) - Postal code of the place where the User lives
+    + dream_job_description (string, optional) - Description of user's dream job.
     + embedded.user (object, required) - User to which the User Profile belongs.
     + embedded.test_fills (array, required) - Array of User's Knowledge Test Fills
     + embedded.cute_test_fills (array, required) - Array of User's Cute Test Fills
     + embedded.user_education_level (object, optional) - User Education Level
     + embedded.job_category (object, optional) - Selected JobCategory
+    + embedded.job_types (object, optional) - List of job types
 
 + Parameters
     + user_id (nubmer, required) - ID of the User.
