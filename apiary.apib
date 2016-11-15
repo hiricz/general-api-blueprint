@@ -3206,7 +3206,286 @@ Deletes Blog Article with given ID.
             "ok": true
         }
 
+# Group Credits Coupons
 
+## Credits Coupon Collection [/api/credits-coupons?limit={limit}&page={page}&sort={sort}]
+
++ Parameters
+    + limit (number, optional) - Limits number of candidates returned in the request
+    + page (number, optional) - Distance from beginning of the array of available candidates
+    + sort (string, optional) - Sorts the result in the given order. The format for sort is "column+ASC,column+DESC"
+
+### List Credits Coupons [GET]
+
+Lists all credits coupons.
+
++ Response 200 (application/hal+json)
+
+        {
+          "_embedded": {
+            "credits_coupons": [
+              {
+                "id": 1,
+                "amount": 500,
+                "code": "ABC123",
+                "currency": {
+                  "id": "CZK",
+                  "_links": {
+                    "self": {
+                      "href": "Currencies:read"
+                    }
+                  },
+                  "_embedded": {
+                    "title": []
+                  }
+                },
+                "_links": {
+                  "self": {
+                    "href": "CreditsCoupons:read"
+                  }
+                },
+                "_embedded": {
+                  "has_been_used": false,
+                  "currency": {
+                    "id": "CZK",
+                    "_links": {
+                      "self": {
+                        "href": "Currencies:read"
+                      }
+                    },
+                    "_embedded": {
+                      "title": []
+                    }
+                  }
+                }
+              },
+              {
+                "id": 2,
+                "amount": 500,
+                "code": "XYZ123",
+                "currency": {
+                  "id": "CZK",
+                  "_links": {
+                    "self": {
+                      "href": "Currencies:read"
+                    }
+                  },
+                  "_embedded": {
+                    "title": []
+                  }
+                },
+                "_links": {
+                  "self": {
+                    "href": "CreditsCoupons:read"
+                  }
+                },
+                "_embedded": {
+                  "has_been_used": false,
+                  "currency": {
+                    "id": "CZK",
+                    "_links": {
+                      "self": {
+                        "href": "Currencies:read"
+                      }
+                    },
+                    "_embedded": {
+                      "title": []
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        }
+
+### Create Credits Coupon [POST]
+
+Creates Credits Coupon with given parameters.
+
++ Request (application/json)
+
+    + Parameters
+        + amount (number, optional) - Number of credits
+        + currency (string, optional) - Currency of the credits
+
+    + Body
+
+            {
+                "amount": 500,
+                "currency": "CZK"
+            }
+
++ Response 201 (application/hal+json)
+
+        {
+          "ok": true,
+          "inserted": {
+            "id": 1001,
+            "amount": 1000,
+            "code": "u8eb95ef8m",
+            "currency": {
+              "id": "CZK",
+              "_links": {
+                "self": {
+                  "href": "Currencies:read"
+                }
+              },
+              "_embedded": {
+                "title": []
+              }
+            },
+            "_links": {
+              "self": {
+                "href": "CreditsCoupons:read"
+              }
+            },
+            "_embedded": {
+              "has_been_used": false,
+              "claimed_by": null,
+              "currency": {
+                "id": "CZK",
+                "_links": {
+                  "self": {
+                    "href": "Currencies:read"
+                  }
+                },
+                "_embedded": {
+                  "title": []
+                }
+              }
+            }
+          }
+        }
+
+## Credits Coupon [/api/credits-coupons/{id}]
+
++ Parameters
+    + id (number, required) - ID of the Coupon
+
+### Retrieve Credits Coupon [GET]
+
+Retrieves Credits Coupon with given ID.
+
++ Response 200 (application/hal+json)
+
+        {
+          "id": 1,
+          "amount": 500,
+          "code": "ABC123",
+          "currency": {
+            "id": "CZK",
+            "_links": {
+              "self": {
+                "href": "Currencies:read"
+              }
+            },
+            "_embedded": {
+              "title": []
+            }
+          },
+          "_links": {
+            "self": {
+              "href": "CreditsCoupons:read"
+            }
+          },
+          "_embedded": {
+            "has_been_used": false,
+            "claimed_by": null,
+            "currency": {
+              "id": "CZK",
+              "_links": {
+                "self": {
+                  "href": "Currencies:read"
+                }
+              },
+              "_embedded": {
+                "title": []
+              }
+            }
+          }
+        }
+
+### Update Credits Coupon [PUT]
+
+Updates Credits Coupon with given ID.
+
++ Request (application/json)
+
+    + Parameters
+        + amount (number, optional) - Number of credits
+        + currency (string, optional) - Currency of the credits
+
+    + Body
+
+            {
+                "amount": 1000,
+                "currency": "CZK"
+            }
+
++ Response 200 (application/hal+json)
+
+        {
+          "ok": true,
+          "updated": {
+            "id": 1,
+            "amount": 1000,
+            "code": "ABC123",
+            "currency": {
+              "id": "CZK",
+              "_links": {
+                "self": {
+                  "href": "Currencies:read"
+                }
+              },
+              "_embedded": {
+                "title": []
+              }
+            },
+            "_links": {
+              "self": {
+                "href": "CreditsCoupons:read"
+              }
+            },
+            "_embedded": {
+              "has_been_used": false,
+              "claimed_by": null,
+              "currency": {
+                "id": "CZK",
+                "_links": {
+                  "self": {
+                    "href": "Currencies:read"
+                  }
+                },
+                "_embedded": {
+                  "title": []
+                }
+              }
+            }
+          }
+        }
+
+# Group Credits Coupon Claims
+
+## Credits Coupon Claims Collection [/api/credits-coupon-claims]
+
+### Claim Credits Coupon [POST]
+
++ Request (application/json)
+
+    + Parameters
+        + credits_account (number, required) - ID of credits account
+        + code (string, required) - Code of the coupon
+
+    + Body
+
+            {
+                "credits_account": 1,
+                "code": "ABCD1234"
+            }
+
++ Response 201 (application/hal+json)
+
+        {"ok": true}
 
 # Group Clients
 
