@@ -15008,6 +15008,371 @@ Softly deletes User Work Experience.
             "ok": true
         }
 
+
+# Group Job Offer User Filters
+
+## Job Offer User Filter Collection [/api/job-offer-user-filters?limit={limit}&page={page}&sort={sort}]
+
++ Parameters
+    + limit (number, optional) - Limits number of candidates returned in the request
+    + page (number, optional) - Distance from beginning of the array of available candidates
+    + sort (string, optional) - Sorts the result in the given order. The format for sort is "column+ASC,column+DESC"
+
+### List Job Offer User Filters [GET]
+
+List all Job Offer User Filters.
+
++ Response 200 (application/hal+json)
+
+        {
+          "_embedded": {
+            "job_offer_user_filters": [
+              {
+                "id": 1,
+                "filter": {
+                  "job-location": "Prague"
+                },
+                "created": "2016-11-16T13:12:30+0100",
+                "_links": {
+                  "self": {
+                    "href": "JobOfferUserFilters:read"
+                  },
+                  "user": {
+                    "href": "Users:read"
+                  }
+                },
+                "_embedded": {
+                  "user": {
+                    "id": 1,
+                    "name": "John Doe",
+                    "email": "john.doe@example.com",
+                    "created": "2016-11-16T13:12:30+01:00",
+                    "first_name_basis": false,
+                    "_links": {
+                      "self": {
+                        "href": "Users:read"
+                      },
+                      "language": {
+                        "href": "Languages:readAll"
+                      }
+                    },
+                    "_embedded": {
+                      "language": {
+                        "id": "cs",
+                        "_links": {
+                          "self": {
+                            "href": "Languages:read"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "id": 2,
+                "filter": {
+                  "job-location": "Prague"
+                },
+                "created": "2016-11-16T13:12:30+0100",
+                "_links": {
+                  "self": {
+                    "href": "JobOfferUserFilters:read"
+                  },
+                  "user": {
+                    "href": "Users:read"
+                  }
+                },
+                "_embedded": {
+                  "user": {
+                    "id": 2,
+                    "name": "John Doe",
+                    "email": "john.doe@example.com",
+                    "created": "2016-11-16T13:12:30+01:00",
+                    "first_name_basis": false,
+                    "_links": {
+                      "self": {
+                        "href": "Users:read"
+                      },
+                      "language": {
+                        "href": "Languages:readAll"
+                      }
+                    },
+                    "_embedded": {
+                      "language": {
+                        "id": "cs",
+                        "_links": {
+                          "self": {
+                            "href": "Languages:read"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        }
+
+### Create Job Offer User Filter [POST]
+
+Creates Job Offer User Filter with given parameters.
+
++ Request (application/json)
+
+    + Attributes
+        + filter (JobOfferUserFilterDescription, required) - Object describing the filter.
+
+    + Body
+
+            {
+                "filter": {
+                    "job-location":"Prague"
+                }
+            }
+
++ Response 201 (application/hal+json)
+
+        {
+          "ok": true,
+          "inserted": {
+            "id": 1001,
+            "filter": {
+              "job-location": "Prague"
+            },
+            "created": "2016-11-16T13:12:53+0100",
+            "_links": {
+              "self": {
+                "href": "JobOfferUserFilters:read"
+              },
+              "user": {
+                "href": "Users:read"
+              }
+            },
+            "_embedded": {
+              "user": {
+                "id": 1,
+                "name": "John Doe",
+                "email": "john.doe@example.com",
+                "created": "2016-11-16T13:12:54+01:00",
+                "first_name_basis": false,
+                "_links": {
+                  "self": {
+                    "href": "Users:read"
+                  },
+                  "language": {
+                    "href": "Languages:readAll"
+                  }
+                },
+                "_embedded": {
+                  "language": {
+                    "id": "cs",
+                    "_links": {
+                      "self": {
+                        "href": "Languages:read"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+
+## User's Job Offer User Filter Collection [/api/users/{user_id}/job-offer-user-filters?limit={limit}&page={page}&sort={sort}]
+
++ Parameters
+    + user_id (number, required) - User's ID
+    + limit (number, optional) - Limits number of candidates returned in the request
+    + page (number, optional) - Distance from beginning of the array of available candidates
+    + sort (string, optional) - Sorts the result in the given order. The format for sort is "column+ASC,column+DESC"
+
+### List User's Job Offer User Filters [GET]
+
+Lists all User's Job Offer User Filters.
+
++ Response 200 (application/hal+json)
+
+        {
+          "_embedded": {
+            "job_offer_user_filters": [
+              {
+                "id": 1,
+                "filter": {
+                  "job-location": "Prague"
+                },
+                "created": "2016-11-16T13:12:46+0100",
+                "_links": {
+                  "self": {
+                    "href": "JobOfferUserFilters:read"
+                  },
+                  "user": {
+                    "href": "Users:read"
+                  }
+                },
+                "_embedded": {
+                  "user": {
+                    "id": 1,
+                    "name": "John Doe",
+                    "email": "john.doe@example.com",
+                    "created": "2016-11-16T13:12:46+01:00",
+                    "first_name_basis": false,
+                    "_links": {
+                      "self": {
+                        "href": "Users:read"
+                      },
+                      "language": {
+                        "href": "Languages:readAll"
+                      }
+                    },
+                    "_embedded": {
+                      "language": {
+                        "id": "cs",
+                        "_links": {
+                          "self": {
+                            "href": "Languages:read"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        }
+
+## Job Offer User Filter [/api/job-offer-user-filters/{id}]
+
++ Parameters
+    + id (number, required) - ID of the filter
++ Attributes
+    + id (number, required) - ID of the filter
+    + filter (JobOfferUserFilterDescription, required) - Description of the filter
+
+### Retrieve Job Offer User Filter [GET]
+
+Retrieves Job Offer User Filter with given ID.
+
++ Reponse 200 (application/hal+json)
+
+        {
+          "id": 1,
+          "filter": {
+            "job-location": "Prague"
+          },
+          "created": "2016-11-16T13:13:02+0100",
+          "_links": {
+            "self": {
+              "href": "JobOfferUserFilters:read"
+            },
+            "user": {
+              "href": "Users:read"
+            }
+          },
+          "_embedded": {
+            "user": {
+              "id": 1,
+              "name": "John Doe",
+              "email": "john.doe@example.com",
+              "created": "2016-11-16T13:13:01+01:00",
+              "first_name_basis": false,
+              "_links": {
+                "self": {
+                  "href": "Users:read"
+                },
+                "language": {
+                  "href": "Languages:readAll"
+                }
+              },
+              "_embedded": {
+                "language": {
+                  "id": "cs",
+                  "_links": {
+                    "self": {
+                      "href": "Languages:read"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+
+### Update Job Offer User Filter [PUT]
+
+Updates Job Offer User Filter with given ID.
+
++ Request (application/json)
+
+    + Attributes
+        + filter (JobOfferUserFilterDescription, optional) - Object describing the filter.
+
+    + Body
+
+            {
+                "filter": {
+                    "job-location":"Prague"
+                }
+            }
+
++ Response 200 (application/hal+json)
+
+        {
+          "ok": true,
+          "updated": {
+            "id": 1,
+            "filter": {
+              "state": "active"
+            },
+            "created": "2016-11-16T13:13:19+0100",
+            "_links": {
+              "self": {
+                "href": "JobOfferUserFilters:read"
+              },
+              "user": {
+                "href": "Users:read"
+              }
+            },
+            "_embedded": {
+              "user": {
+                "id": 1,
+                "name": "John Doe",
+                "email": "john.doe@example.com",
+                "created": "2016-11-16T13:13:19+01:00",
+                "first_name_basis": false,
+                "_links": {
+                  "self": {
+                    "href": "Users:read"
+                  },
+                  "language": {
+                    "href": "Languages:readAll"
+                  }
+                },
+                "_embedded": {
+                  "language": {
+                    "id": "cs",
+                    "_links": {
+                      "self": {
+                        "href": "Languages:read"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+
+### Delete Job Offer User Filter [DELETE]
+
+Deletes Job Offer User Filter with given ID.
+
++ Response 200 (application/hal+json)
+
+        {"ok": true}
+
 # Data Structures
 
 
@@ -15030,3 +15395,15 @@ Softly deletes User Work Experience.
     + price_per_c_v (number, required) - Price per one CV
     + total_budget (number, required) - Total budget
     + currency (string, required) - ID of the currency for the budgets
+
+## JobOfferUserFilterDescription (object)
+
++ Attributes
+    + company (number, optional) - ID of company
+    + state (string, optional) - State of Job Offer
+    + state-category (string, optional) - State category of Job Offer
+    + job-category (array, optional) - IDs of Job Categories
+    + job-type (array, optional) - IDs of Job types
+    + job-location (string, optional) - Location string which the Job Offer location should contain
+    + search (string, optional) - Search string
+    + related-to (integer, optional) - ID of Job Offer to which the filtered offers should be related
