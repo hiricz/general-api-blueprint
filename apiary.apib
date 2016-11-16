@@ -15373,6 +15373,153 @@ Deletes Job Offer User Filter with given ID.
 
         {"ok": true}
 
+# Group Dealers
+
+## Dealers Collection [/api/dealers?limit={limit}&page={page}&sort={sort}]
+
++ Parameters
+   + limit (number, optional) - Limits number of candidates returned in the request
+   + page (number, optional) - Distance from beginning of the array of available candidates
+   + sort (string, optional) - Sorts the result in the given order. The format for sort is "column+ASC,column+DESC"
+
+### List Dealers [GET]
+
+Lists all dealers.
+
++ Response 200 (application/hal+json)
+
+        {
+          "_embedded": {
+            "dealers": [
+              {
+                "id": "delfin",
+                "name": "Pan Delf\u00edn",
+                "_links": {
+                  "self": {
+                    "href": "Dealers:read"
+                  }
+                },
+                "_embedded": {
+                  "companies": []
+                }
+              },
+              {
+                "id": "zralok",
+                "name": "Pan Delf\u00edn",
+                "_links": {
+                  "self": {
+                    "href": "Dealers:read"
+                  }
+                },
+                "_embedded": {
+                  "companies": []
+                }
+              }
+            ]
+          }
+        }
+
+### Create Dealer [POST]
+
+Creates Dealer with given parameters.
+
++ Request (application/json)
+
+    + Attributes
+        + id (string, required) - ID of the dealer
+        + name (string, optional) - Name of the dealer
+
+    + Body
+
+            {
+                "id": "delfin",
+                "name": "Pan Delfín"
+            }
+
++ Response 201 (application/hal+json)
+
+        {
+          "ok": true,
+          "inserted": {
+            "id": "delfin",
+            "_links": {
+              "self": {
+                "href": "Dealers:read"
+              }
+            },
+            "_embedded": {
+              "companies": []
+            }
+          }
+        }
+
+## Dealer [/api/dealer/{id}]
+
++ Parameters
+    + id (string, required) - ID of the dealer
++ Attributes
+    + id (string, required) - ID of the dealer
+    + name (string, optional) - Name of the dealer
+    + embedded.companies (array, required) - All companies belonging to the dealer
+
+### Retrieve Dealer [GET]
+
+Retrieves the Dealer with given ID.
+
++ Response 200 (application/hal+json)
+
+        {
+          "id": "delfin",
+          "name": "Pan Delf\u00edn",
+          "_links": {
+            "self": {
+              "href": "Dealers:read"
+            }
+          },
+          "_embedded": {
+            "companies": []
+          }
+        }
+
+### Update Dealer [PUT]
+
+Updates Dealer with given ID.
+
++ Request (application/json)
+
+    + Attributes
+        + name (string, optional) - Name of the dealer
+
+    + Body
+
+            {"name": "Pan Delfín"}
+
++ Response 200 (application/hal+json)
+
+        {
+          "ok": true,
+          "updated": {
+            "id": "delfin",
+            "name": "Pan Delf\u00edn",
+            "_links": {
+              "self": {
+                "href": "Dealers:read"
+              }
+            },
+            "_embedded": {
+              "companies": []
+            }
+          }
+        }
+
+### Delete Dealer [DELETE]
+
+Deletes Dealer with given ID.
+
++ Response 200 (application/hal+json)
+
+        {"ok": true}
+
 # Data Structures
 
 
