@@ -2827,6 +2827,735 @@ Deletes an Application with given ID.
         }
 
 
+# Group Application Filter Set
+
+## Application Filter Set Collection [/api/application-filter-sets?limit={limit}&page={page}&sort={sort}]
+
++ Parameters
+    + limit (number, optional) - Limits number of candidates returned in the request
+    + page (number, optional) - Distance from beginning of the array of available candidates
+    + sort (string, optional) - Sorts the result in the given order. The format for sort is "column+ASC,column+DESC"
+
+### List Application Filter Sets [GET]
+
+Lists all Application Filter Sets.
+
++ Response 200 (application/hal+json)
+
+        {
+          "_embedded": {
+            "application_filter_sets": [
+              {
+                "id": 1,
+                "name": "filter1",
+                "created": "2017-01-25T14:27:38+0100",
+                "_links": {
+                  "self": {
+                    "href": "ApplicationFilterSets:read"
+                  },
+                  "company": {
+                    "href": "Companies:read"
+                  }
+                }
+              },
+              {
+                "id": 2,
+                "name": "filter2",
+                "created": "2017-01-25T14:27:38+0100",
+                "_links": {
+                  "self": {
+                    "href": "ApplicationFilterSets:read"
+                  },
+                  "company": {
+                    "href": "Companies:read"
+                  }
+                }
+              }
+            ]
+          }
+        }
+
+### Create Application Filter Set [POST]
+
+Creates Application Filter Question with given parameters.
+
++ Request (application/json)
+
+    + Parameters
+        + name (string, required) - Name of the filter set
+        + company (number, required) - ID of the Company to which the set belongs
+
+    + Body
+
+            {
+                "name": "filterX",
+                "company": 1
+            }
+
++ Response 201 (application/hal+json)
+
+        {
+          "ok": true,
+          "inserted": {
+            "id": 1001,
+            "name": "filterX",
+            "created": "2017-01-25T14:27:50+0100",
+            "_links": {
+              "self": {
+                "href": "ApplicationFilterSets:read"
+              },
+              "company": {
+                "href": "Companies:read"
+              }
+            },
+            "_embedded": {
+              "company": {
+                "id": 1,
+                "name": "\u010cesk\u00e1 Poji\u0161\u0165ovna, a.s.",
+                "webalized": "ceska-pojistovna-a-s",
+                "created": "2017-01-25T14:27:50+01:00",
+                "address": "Sp\u00e1len\u00e1 1",
+                "city": "Praha",
+                "country": "\u010cesk\u00e1 republika",
+                "contact_person_email": "",
+                "_links": {
+                  "self": {
+                    "href": "Companies:read"
+                  },
+                  "jobs": {
+                    "href": "Jobs:readAll"
+                  },
+                  "jobs:active": {
+                    "href": "Jobs:readAll"
+                  }
+                },
+                "_embedded": {
+                  "description": [],
+                  "credits_account": false,
+                  "tests": [],
+                  "cute_tests": [],
+                  "new_application_mails": []
+                }
+              }
+            }
+          }
+        }
+
+## Company's Application Filter Set Collection [/api/companies/{company_id}/application-filter-sets?limit={limit}&page={page}&sort={sort}]
+
++ Parameters
+    + company_id (number, required) - ID of the Application Filter Set
+    + limit (number, optional) - Limits number of candidates returned in the request
+    + page (number, optional) - Distance from beginning of the array of available candidates
+    + sort (string, optional) - Sorts the result in the given order. The format for sort is "column+ASC,column+DESC"
+
+### List Company's Application Filter Sets [GET]
+
+Lists all Application Filter Sets.
+
++ Response 200 (application/hal+json)
+
+        {
+          "_embedded": {
+            "application_filter_sets": [
+              {
+                "id": 2,
+                "name": "filter2",
+                "created": "2017-01-25T14:27:42+0100",
+                "_links": {
+                  "self": {
+                    "href": "ApplicationFilterSets:read"
+                  },
+                  "company": {
+                    "href": "Companies:read"
+                  }
+                }
+              },
+              {
+                "id": 1,
+                "name": "filter1",
+                "created": "2017-01-25T14:27:42+0100",
+                "_links": {
+                  "self": {
+                    "href": "ApplicationFilterSets:read"
+                  },
+                  "company": {
+                    "href": "Companies:read"
+                  }
+                }
+              }
+            ]
+          }
+        }
+
+## Application Filter Set [/api/application-filer-sets/{id}]
+
++ Parameters
+    + id (number, required) - ID of the Application Filter Set
++ Attributes
+    + id (number, required) - ID of the Application Filter Set
+    + name (string, required) - Name of the set
+    + created (string, required) - When the set was created
+    + _embedded.company (object, required) - Company to which the set belongs
+
+
+### Retrieve Application Filter Set [GET]
+
+Retrieves Application Filter Set with given ID.
+
++ Response 200 (application/hal+json)
+
+        {
+          "id": 1,
+          "name": "filter1",
+          "created": "2017-01-25T14:28:03+0100",
+          "_links": {
+            "self": {
+              "href": "ApplicationFilterSets:read"
+            },
+            "company": {
+              "href": "Companies:read"
+            }
+          },
+          "_embedded": {
+            "company": {
+              "id": 1,
+              "name": "\u010cesk\u00e1 Poji\u0161\u0165ovna, a.s.",
+              "webalized": "ceska-pojistovna-a-s",
+              "created": "2017-01-25T14:28:03+01:00",
+              "address": "Sp\u00e1len\u00e1 1",
+              "city": "Praha",
+              "country": "\u010cesk\u00e1 republika",
+              "contact_person_email": "",
+              "_links": {
+                "self": {
+                  "href": "Companies:read"
+                },
+                "jobs": {
+                  "href": "Jobs:readAll"
+                },
+                "jobs:active": {
+                  "href": "Jobs:readAll"
+                }
+              },
+              "_embedded": {
+                "description": [],
+                "credits_account": false,
+                "tests": [],
+                "cute_tests": [],
+                "new_application_mails": []
+              }
+            }
+          }
+        }
+
+### Update Application Filter Set [PUT]
+
+Updates Application Filter Set with given ID.
+
++ Request (application/json)
+
+    + Attributes
+        + name (string, optional) - Name of the set
+
+    + Body
+
+            {
+                "name": "filterXY"
+            }
+
++ Response 200 (application/hal+json)
+
+        {
+          "ok": true,
+          "updated": {
+            "id": 1,
+            "name": "filterX",
+            "created": "2017-01-25T14:28:19+0100",
+            "_links": {
+              "self": {
+                "href": "ApplicationFilterSets:read"
+              },
+              "company": {
+                "href": "Companies:read"
+              }
+            },
+            "_embedded": {
+              "company": {
+                "id": 1,
+                "name": "\u010cesk\u00e1 Poji\u0161\u0165ovna, a.s.",
+                "webalized": "ceska-pojistovna-a-s",
+                "created": "2017-01-25T14:28:19+01:00",
+                "address": "Sp\u00e1len\u00e1 1",
+                "city": "Praha",
+                "country": "\u010cesk\u00e1 republika",
+                "contact_person_email": "",
+                "_links": {
+                  "self": {
+                    "href": "Companies:read"
+                  },
+                  "jobs": {
+                    "href": "Jobs:readAll"
+                  },
+                  "jobs:active": {
+                    "href": "Jobs:readAll"
+                  }
+                },
+                "_embedded": {
+                  "description": [],
+                  "credits_account": false,
+                  "tests": [],
+                  "cute_tests": [],
+                  "new_application_mails": []
+                }
+              }
+            }
+          }
+        }
+
+### Soft Delete Application Filter Set [DELETE]
+
+Softly deletes Application Filter Set with given ID.
+
++ Response 200 (application/json)
+
+        {
+            "ok": true
+        }
+
+
+# Group Application Filter Question
+
+## Application Filter Question Collection [/api/application-filter-questions?limit={limit}&page={page}&sort={sort}]
+
++ Parameters
+    + limit (number, optional) - Limits number of candidates returned in the request
+    + page (number, optional) - Distance from beginning of the array of available candidates
+    + sort (string, optional) - Sorts the result in the given order. The format for sort is "column+ASC,column+DESC"
+
+### List Application Filter Questions [GET]
+
+Lists all Application Filter Questions.
+
++ Response 200 (application/hal+json)
+
+        {
+          "_embedded": {
+            "application_filter_questions": [
+              {
+                "id": 1,
+                "text": "Question 1",
+                "prioritized": true,
+                "correct": true,
+                "_links": {
+                  "self": {
+                    "href": "ApplicationFilterQuestions:read"
+                  },
+                  "application_filter_set": {
+                    "href": "ApplicationFilterSets:read"
+                  }
+                },
+                "_embedded": {
+                  "application_filter_set": {
+                    "id": 1,
+                    "name": "\u010cesk\u00e1 Poji\u0161\u0165ovna, a.s.",
+                    "webalized": "ceska-pojistovna-a-s",
+                    "created": "2017-01-25T14:53:24+01:00",
+                    "address": "Sp\u00e1len\u00e1 1",
+                    "city": "Praha",
+                    "country": "\u010cesk\u00e1 republika",
+                    "first_name_basis": false,
+                    "contact_person_email": "",
+                    "_links": {
+                      "self": {
+                        "href": "Companies:read"
+                      },
+                      "jobs": {
+                        "href": "Jobs:readAll"
+                      },
+                      "jobs:active": {
+                        "href": "Jobs:readAll"
+                      }
+                    },
+                    "_embedded": {
+                      "description": [],
+                      "credits_account": false,
+                      "tests": [],
+                      "cute_tests": [],
+                      "new_application_mails": []
+                    }
+                  }
+                }
+              },
+              {
+                "id": 2,
+                "text": "Question 2",
+                "prioritized": true,
+                "correct": false,
+                "_links": {
+                  "self": {
+                    "href": "ApplicationFilterQuestions:read"
+                  },
+                  "application_filter_set": {
+                    "href": "ApplicationFilterSets:read"
+                  }
+                },
+                "_embedded": {
+                  "application_filter_set": {
+                    "id": 1,
+                    "name": "\u010cesk\u00e1 Poji\u0161\u0165ovna, a.s.",
+                    "webalized": "ceska-pojistovna-a-s",
+                    "created": "2017-01-25T14:53:24+01:00",
+                    "address": "Sp\u00e1len\u00e1 1",
+                    "city": "Praha",
+                    "country": "\u010cesk\u00e1 republika",
+                    "first_name_basis": false,
+                    "contact_person_email": "",
+                    "_links": {
+                      "self": {
+                        "href": "Companies:read"
+                      },
+                      "jobs": {
+                        "href": "Jobs:readAll"
+                      },
+                      "jobs:active": {
+                        "href": "Jobs:readAll"
+                      }
+                    },
+                    "_embedded": {
+                      "description": [],
+                      "credits_account": false,
+                      "tests": [],
+                      "cute_tests": [],
+                      "new_application_mails": []
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        }
+
+### Create Application Filter Question [POST]
+
+Creates Application Filter Question with given parameters.
+
++ Request (application/json)
+
+    + Parameters
+        + application_filter_set (number, required) - ID of Application Filter Set to which the Question belongs
+        + text (string, required) - Text of the question.
+        + prioritized (bool, required) - Is the question prioritized?
+        + correct (bool, required) - Should the answer be yes (true) or no (false)?
+
+    + Body
+
+            {
+                "application_filter_set": 1,
+                "text": "Question X",
+                "prioritized": true,
+                "correct": true
+            }
+
++ Response 201 (application/hal+json)
+
+        {
+          "ok": true,
+          "inserted": {
+            "id": 1001,
+            "text": "Question X",
+            "prioritized": true,
+            "correct": true,
+            "_links": {
+              "self": {
+                "href": "ApplicationFilterQuestions:read"
+              },
+              "application_filter_set": {
+                "href": "ApplicationFilterSets:read"
+              }
+            },
+            "_embedded": {
+              "application_filter_set": {
+                "id": 1,
+                "name": "\u010cesk\u00e1 Poji\u0161\u0165ovna, a.s.",
+                "webalized": "ceska-pojistovna-a-s",
+                "created": "2017-01-25T14:53:36+01:00",
+                "address": "Sp\u00e1len\u00e1 1",
+                "city": "Praha",
+                "country": "\u010cesk\u00e1 republika",
+                "contact_person_email": "",
+                "_links": {
+                  "self": {
+                    "href": "Companies:read"
+                  },
+                  "jobs": {
+                    "href": "Jobs:readAll"
+                  },
+                  "jobs:active": {
+                    "href": "Jobs:readAll"
+                  }
+                },
+                "_embedded": {
+                  "description": [],
+                  "credits_account": false,
+                  "tests": [],
+                  "cute_tests": [],
+                  "new_application_mails": []
+                }
+              }
+            }
+          }
+        }
+
+## Application Filter Set's Application Filter Question Collection [/api/application-filter-sets/{set_id}/application-filter-questions?limit={limit}&page={page}&sort={sort}]
+
++ Parameters
+    + set_id (number, required) - ID of the Application Filter Set
+    + limit (number, optional) - Limits number of candidates returned in the request
+    + page (number, optional) - Distance from beginning of the array of available candidates
+    + sort (string, optional) - Sorts the result in the given order. The format for sort is "column+ASC,column+DESC"
+
+### List Application Filter Set's Application Filter Questions [GET]
+
+Lists all Application Filter Questions.
+
++ Response 200 (application/hal+json)
+
+        {
+          "_embedded": {
+            "application_filter_questions": [
+              {
+                "id": 2,
+                "text": "Question 2",
+                "prioritized": true,
+                "correct": false,
+                "_links": {
+                  "self": {
+                    "href": "ApplicationFilterQuestions:read"
+                  },
+                  "application_filter_set": {
+                    "href": "ApplicationFilterSets:read"
+                  }
+                },
+                "_embedded": {
+                  "application_filter_set": {
+                    "id": 1,
+                    "name": "\u010cesk\u00e1 Poji\u0161\u0165ovna, a.s.",
+                    "webalized": "ceska-pojistovna-a-s",
+                    "created": "2017-01-25T14:53:30+01:00",
+                    "address": "Sp\u00e1len\u00e1 1",
+                    "city": "Praha",
+                    "country": "\u010cesk\u00e1 republika",
+                    "contact_person_email": "",
+                    "_links": {
+                      "self": {
+                        "href": "Companies:read"
+                      },
+                      "jobs": {
+                        "href": "Jobs:readAll"
+                      },
+                      "jobs:active": {
+                        "href": "Jobs:readAll"
+                      }
+                    },
+                    "_embedded": {
+                      "description": [],
+                      "credits_account": false,
+                      "tests": [],
+                      "cute_tests": [],
+                      "new_application_mails": []
+                    }
+                  }
+                }
+              },
+              {
+                "id": 1,
+                "text": "Question 1",
+                "prioritized": true,
+                "correct": true,
+                "_links": {
+                  "self": {
+                    "href": "ApplicationFilterQuestions:read"
+                  },
+                  "application_filter_set": {
+                    "href": "ApplicationFilterSets:read"
+                  }
+                },
+                "_embedded": {
+                  "application_filter_set": {
+                    "id": 1,
+                    "name": "\u010cesk\u00e1 Poji\u0161\u0165ovna, a.s.",
+                    "webalized": "ceska-pojistovna-a-s",
+                    "created": "2017-01-25T14:53:30+01:00",
+                    "address": "Sp\u00e1len\u00e1 1",
+                    "city": "Praha",
+                    "country": "\u010cesk\u00e1 republika",
+                    "contact_person_email": "",
+                    "_links": {
+                      "self": {
+                        "href": "Companies:read"
+                      },
+                      "jobs": {
+                        "href": "Jobs:readAll"
+                      },
+                      "jobs:active": {
+                        "href": "Jobs:readAll"
+                      }
+                    },
+                    "_embedded": {
+                      "description": [],
+                      "credits_account": false,
+                      "tests": [],
+                      "cute_tests": [],
+                      "new_application_mails": []
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        }
+
+## Application Filter Question [/api/application-filer-questions/{id}]
+
++ Parameters
+    + id (number, required) - ID of the Application Filter Question
++ Attributes
+    + id (number, required) - ID of the Application Filter Question
+    + text (string, required) - Text of the question
+    + prioritized (boolean, required) - Is the question prioritized?
+    + correct (boolean, required) - Should the answer be yes (true) or no (false)?
+    + embedded.application_filter_set (object, required) - The set to which the question belongs
+
+
+### Retrieve Application Filter Question [GET]
+
+Retrieves Application Filter Question with given ID.
+
++ Response 200 (application/hal+json)
+
+        {
+          "id": 1,
+          "text": "Question 1",
+          "prioritized": true,
+          "correct": true,
+          "_links": {
+            "self": {
+              "href": "ApplicationFilterQuestions:read"
+            },
+            "application_filter_set": {
+              "href": "ApplicationFilterSets:read"
+            }
+          },
+          "_embedded": {
+            "application_filter_set": {
+              "id": 1,
+              "name": "\u010cesk\u00e1 Poji\u0161\u0165ovna, a.s.",
+              "webalized": "ceska-pojistovna-a-s",
+              "created": "2017-01-25T14:53:50+01:00",
+              "address": "Sp\u00e1len\u00e1 1",
+              "city": "Praha",
+              "country": "\u010cesk\u00e1 republika",
+              "contact_person_email": "",
+              "_links": {
+                "self": {
+                  "href": "Companies:read"
+                },
+                "jobs": {
+                  "href": "Jobs:readAll"
+                },
+                "jobs:active": {
+                  "href": "Jobs:readAll"
+                }
+              },
+              "_embedded": {
+                "description": [],
+                "credits_account": false,
+                "tests": [],
+                "cute_tests": [],
+                "new_application_mails": []
+              }
+            }
+          }
+        }
+
+### Update Application Filter Question [PUT]
+
+Updates Application Filter Question with given ID.
+
++ Request (application/json)
+
+    + Attributes
+        + text (string, required) - Text of the question
+        + prioritized (boolean, required) - Is the question prioritized?
+        + correct (boolean, required) - Should the answer be yes (true) or no (false)?
+
+    + Body
+
+            {
+                "text": "Question X",
+                "prioritized": false,
+                "correct": false
+            }
+
++ Response 200 (application/hal+json)
+
+        {
+          "ok": true,
+          "updated": {
+            "id": 1,
+            "text": "Question X",
+            "prioritized": false,
+            "correct": false,
+            "_links": {
+              "self": {
+                "href": "ApplicationFilterQuestions:read"
+              },
+              "application_filter_set": {
+                "href": "ApplicationFilterSets:read"
+              }
+            },
+            "_embedded": {
+              "application_filter_set": {
+                "id": 1,
+                "name": "\u010cesk\u00e1 Poji\u0161\u0165ovna, a.s.",
+                "webalized": "ceska-pojistovna-a-s",
+                "created": "2017-01-25T14:54:11+01:00",
+                "address": "Sp\u00e1len\u00e1 1",
+                "city": "Praha",
+                "country": "\u010cesk\u00e1 republika",
+                "contact_person_email": "",
+                "_links": {
+                  "self": {
+                    "href": "Companies:read"
+                  },
+                  "jobs": {
+                    "href": "Jobs:readAll"
+                  },
+                  "jobs:active": {
+                    "href": "Jobs:readAll"
+                  }
+                },
+                "_embedded": {
+                  "description": [],
+                  "credits_account": false,
+                  "tests": [],
+                  "cute_tests": [],
+                  "new_application_mails": []
+                }
+              }
+            }
+          }
+        }
+
+### Soft Delete Application Filter Question [DELETE]
+
+Softly deletes Application Filter Question with given ID.
+
++ Response 200 (application/json)
+
+        {"ok": true}
+
 # Group Blog Articles
 
 ## Blog Articles Collection  [/api/blog-articles?limit={limit}&page={page}&sort={sort}]
